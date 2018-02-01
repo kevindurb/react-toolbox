@@ -15,7 +15,16 @@ module.exports = (projectDir, baseDir, config) => ({
       {
         test: /\.js(x?)$/,
         exclude: /(node_modules)/,
-        use: ['babel-loader'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              'env',
+              'stage-0',
+              'react'
+            ],
+          }
+        },
       },
     ],
   },
