@@ -1,6 +1,8 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
-module.exports = (projectDir, baseDir) => ({
+module.exports = (projectDir, baseDir, config) => ({
   context: path.resolve(projectDir, './'),
   entry: ['babel-polyfill', './src/index.js'],
   output: {
@@ -17,6 +19,15 @@ module.exports = (projectDir, baseDir) => ({
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new FriendlyErrorsPlugin({
+      compilationSuccessInfo: {
+        messages: config.messages,
+      },
+      clearConsole: config.clearConsole,
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [

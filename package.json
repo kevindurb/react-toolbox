@@ -17,7 +17,11 @@
     "babel-preset-stage-0": "^6.24.1",
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
+    "dotenv-webpack": "^1.5.4",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "html-webpack-plugin": "^2.30.1",
     "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
   }
 }

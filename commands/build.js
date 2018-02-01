@@ -6,20 +6,20 @@ module.exports = () => {
 
   console.log(chalk.green('Building for production...'));
 
+  const config = {
+    messages: ['Successfully built to ./dist !'],
+    clearConsole: false,
+  };
   const productionConfig = require('../webpack/webpack.config.prod.js');
   const projectDir = process.cwd();
   const baseDir = path.join(__dirname, '../');
-  const compiler = webpack(productionConfig(projectDir, baseDir));
+  const compiler = webpack(productionConfig(projectDir, baseDir, config));
 
   compiler.run((err, stats) => {
     if (err || stats.hasErrors()) {
-      console.log(stats.toString({ colors: true }));
-      console.log(chalk.red('Something bad happened!!'));
       process.exit(1);
     }
 
-    console.log(stats.toString({ colors: true }));
-    console.log(chalk.green('All done!'));
     process.exit(0);
   });
 };

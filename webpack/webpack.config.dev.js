@@ -5,13 +5,14 @@ const base = require('./webpack.config.base.js');
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 
-module.exports = (projectDir, baseDir) => (
-  merge(base(projectDir, baseDir), {
+module.exports = (projectDir, baseDir, config) => (
+  merge(base(projectDir, baseDir, config), {
     plugins: [
       new Dotenv(),
       new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
+      quiet: true,
       compress: true,
       contentBase: path.join(projectDir, './dist'),
       historyApiFallback: true,

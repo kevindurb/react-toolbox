@@ -5,8 +5,8 @@ const base = require('./webpack.config.base.js');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-module.exports = (projectDir, baseDir) => (
-  merge(base(projectDir, baseDir), {
+module.exports = (projectDir, baseDir, config) => (
+  merge(base(projectDir, baseDir, config), {
     plugins: [
       new UglifyJSPlugin(),
       new webpack.DefinePlugin({
