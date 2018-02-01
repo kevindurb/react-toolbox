@@ -3,8 +3,6 @@
 const app = require('commander');
 const package = require('./package.json');
 
-const startDevServer = require('./commands/devServer');
-
 app
   .version(package.version)
   .usage('[command] <arguments>');
@@ -12,6 +10,11 @@ app
 app
   .command('start')
   .description('start a dev server')
-  .action(startDevServer);
+  .action(require('./commands/start'));
+
+app
+  .command('build')
+  .description('build for production')
+  .action(require('./commands/build'));
 
 app.parse(process.argv);
