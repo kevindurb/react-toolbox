@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (projectDir, baseDir, config) => ({
   context: path.resolve(projectDir, './'),
@@ -36,6 +37,9 @@ module.exports = (projectDir, baseDir, config) => ({
       },
       clearConsole: config.clearConsole,
     }),
+    new CopyWebpackPlugin([
+      { from: path.join(projectDir, './public'), to: path.join(projectDir, './dist') },
+    ]),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
