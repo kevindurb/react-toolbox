@@ -5,6 +5,10 @@ project to start the next and having old projects rot with out an easy way of
 upgrading them. So I created `react-toolbox` a highly opinionated toolbox for
 building a react web application with minimal setup.
 
+This is inspired by Dan Abramov's talk, which is fantastic and you should
+totally check it out:
+https://www.youtube.com/watch?v=G39lKaONAlA
+
 ## Installation
 ```
 yarn add @kevindurb/react-toolbox
