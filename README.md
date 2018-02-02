@@ -19,7 +19,7 @@ npm install --save @kevindurb/react-toolbox
 ```
 
 ## Usage
-`react-toolbox` looks for an entry point at `./src/index.js` and will compile
+`react-toolbox` looks for an entry point at `./index.js` and will compile
 what ever js you provide from there.
 
 ### Development
