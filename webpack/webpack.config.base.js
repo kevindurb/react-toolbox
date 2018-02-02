@@ -7,7 +7,7 @@ module.exports = (projectDir, baseDir, config) => ({
   context: path.resolve(projectDir, './'),
   entry: [
     'babel-polyfill',
-    './src/index.js',
+    './index.js',
   ],
   output: {
     filename: '[name].[hash].bundle.js',
