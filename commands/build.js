@@ -17,6 +17,11 @@ module.exports = () => {
 
   compiler.run((err, stats) => {
     if (err || stats.hasErrors()) {
+      console.log(
+        stats.toString({
+          colors: true,
+        })
+      );
       process.exit(1);
     }
 

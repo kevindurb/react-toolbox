@@ -12,7 +12,6 @@ module.exports = (projectDir, baseDir, config) => (
       new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
-      quiet: true,
       compress: true,
       contentBase: path.join(projectDir, './dist'),
       historyApiFallback: true,

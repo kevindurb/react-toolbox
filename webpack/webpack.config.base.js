@@ -1,11 +1,14 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (projectDir, baseDir, config) => ({
   context: path.resolve(projectDir, './'),
-  entry: ['babel-polyfill', './src/index.js'],
+  entry: [
+    'babel-polyfill',
+    './src/index.js',
+  ],
   output: {
     filename: '[name].[hash].bundle.js',
     path: path.resolve(projectDir, './dist'),
@@ -46,6 +49,7 @@ module.exports = (projectDir, baseDir, config) => ({
     modules: [
       path.join(baseDir, './node_modules'),
       path.join(projectDir, './node_modules'),
+      baseDir,
     ],
   },
   resolveLoader: {
