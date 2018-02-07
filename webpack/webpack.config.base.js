@@ -1,21 +1,24 @@
 const path = require('path');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (projectDir, baseDir, config) => ({
   context: path.resolve(projectDir, './'),
-  entry: [
-    'babel-polyfill',
-    './index.js',
-  ],
+  entry: {
+    main: ['babel-polyfill', './index.js'],
+  },
   output: {
     filename: '[name].[hash].bundle.js',
     path: path.resolve(projectDir, './dist'),
     publicPath: '/',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
+      {
+        test: /\.ejs$/,
+        loader: 'ejs-compiled-loader',
+      },
       {
         test: /\.js(x?)$/,
         exclude: /(node_modules)/,
@@ -33,7 +36,6 @@ module.exports = (projectDir, baseDir, config) => ({
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin(),
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
         messages: config.messages,
@@ -49,12 +51,12 @@ module.exports = (projectDir, baseDir, config) => ({
     modules: [
       path.join(baseDir, './node_modules'),
       path.join(projectDir, './node_modules'),
-      baseDir,
     ],
   },
   resolveLoader: {
     modules: [
       path.join(baseDir, './node_modules'),
+      path.join(projectDir, './node_modules'),
     ],
   },
   devtool: 'cheap-source-map',

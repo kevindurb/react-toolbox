@@ -4,10 +4,15 @@ const base = require('./webpack.config.base.js');
 
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (projectDir, baseDir, config) => (
   merge(base(projectDir, baseDir, config), {
     plugins: [
+      new HtmlWebpackPlugin({
+        template: path.join(baseDir, './templates/index.ejs'),
+        chunks: ['main'],
+      }),
       new Dotenv(),
       new webpack.HotModuleReplacementPlugin(),
     ],

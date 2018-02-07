@@ -5,12 +5,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title><%= title %></title>
+    <title>Webpack App</title>
   </head>
   <body>
-    <div id="root"><%- content %></div>
-    <% if (script) { %>
-      <script src="<%- script %>"></script>
+    <div id="root">
+      <% if (typeof content !== 'undefined') { %>
+        <%- content %>
+      <% } %>
+    </div>
+    <% if (typeof scriptSrc !== 'undefined') { %>
+      <script src="<%- scriptSrc %>"></script>
     <% } %>
   </body>
 </html>
