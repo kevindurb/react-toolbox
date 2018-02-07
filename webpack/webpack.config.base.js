@@ -21,7 +21,7 @@ module.exports = (projectDir, baseDir, config) => ({
       },
       {
         test: /\.js(x?)$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules\/(?!(@kevindurb\/react-toolbox))/,
         use: {
           loader: 'babel-loader',
           options: {
