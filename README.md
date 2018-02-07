@@ -19,8 +19,19 @@ npm install --save @kevindurb/react-toolbox
 ```
 
 ## Usage
-`react-toolbox` looks for an entry point at `./index.js` and will compile
-what ever js you provide from there.
+`react-toolbox` looks for an entry point at `./index.js` in the root of your
+project and will compile what ever javascript you provide from there. Inside
+that entry point use, and export the result of, the render function provided by
+`react-toolbox`. This allows `react-toolbox` to staticly prerender your app for
+production and still have a development build.
+
+```
+import React from 'react';
+import render from '@kevindurb/react-toolbox/render';
+import App from './path/to/my/App';
+
+export default render(<App />);
+```
 
 ### Development
 `react-toolbox` uses `webpack-dev-server` to host your project at
