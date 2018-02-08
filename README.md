@@ -1,4 +1,5 @@
 # React Toolbox
+[![npm](https://img.shields.io/npm/v/@kevindurb/react-toolbox.svg)](https://www.npmjs.com/package/@kevindurb/react-toolbox)
 
 *SPA static pre-rendering made easy*
 
