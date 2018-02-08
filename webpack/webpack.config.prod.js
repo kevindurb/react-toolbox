@@ -13,9 +13,6 @@ module.exports = (paths) => (
       filename: '[name].[hash].js',
     },
     plugins: [
-      // new webpack.optimize.CommonsChunkPlugin({
-      //   name: 'manifest',
-      // }),
       new StaticSiteGeneratorPlugin({
         crawl: true,
       }),
