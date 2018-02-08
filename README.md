@@ -15,6 +15,7 @@ https://www.youtube.com/watch?v=G39lKaONAlA
 - Quick and easy start for an ES6 & React SPA
 - Build-time pre-rendering built in
 - Simple commands
+- Service Worker caching built in!
 
 ## Installation
 ```
