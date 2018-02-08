@@ -5,17 +5,30 @@ const base = require('./webpack.config.base.js');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
-module.exports = (projectDir, baseDir, config) => (
-  merge(base(projectDir, baseDir, config), {
+module.exports = (paths) => (
+  merge(base(paths), {
+    output: {
+      filename: '[name].[hash].js',
+    },
     plugins: [
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'manifest',
+      // }),
       new StaticSiteGeneratorPlugin({
         crawl: true,
       }),
+      new webpack.HashedModuleIdsPlugin(),
       new UglifyJSPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production'),
-        'process.env.API_BASE': JSON.stringify(process.env.API_BASE),
+      }),
+      new FriendlyErrorsPlugin({
+        compilationSuccessInfo: {
+          messages: ['Successfully built to ./dist !'],
+        },
+        clearConsole: false,
       }),
     ],
   })

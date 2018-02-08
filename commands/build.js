@@ -1,19 +1,14 @@
-const path = require('path');
-
 module.exports = () => {
   const webpack = require('webpack');
   const chalk = require('chalk');
-
-  console.log(chalk.green('Building for production...'));
-
-  const config = {
-    messages: ['Successfully built to ./dist !'],
-    clearConsole: false,
-  };
+  const makePaths = require('../utils/makePaths');
   const productionConfig = require('../webpack/webpack.config.prod.js');
-  const projectDir = process.cwd();
-  const baseDir = path.join(__dirname, '../');
-  const compiler = webpack(productionConfig(projectDir, baseDir, config));
+
+  const paths = makePaths();
+  const config = productionConfig(paths);
+  const compiler = webpack(config);
+
+  console.log(chalk.green(`Building for production into ${paths.dist}`));
 
   compiler.run((err, stats) => {
     if (err || stats.hasErrors()) {

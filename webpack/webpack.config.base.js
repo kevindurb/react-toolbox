@@ -1,15 +1,13 @@
-const path = require('path');
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = (projectDir, baseDir, config) => ({
-  context: path.resolve(projectDir, './'),
+module.exports = (paths) => ({
+  context: paths.project,
   entry: {
     main: ['babel-polyfill', './index.js'],
   },
   output: {
-    filename: '[name].[hash].bundle.js',
-    path: path.resolve(projectDir, './dist'),
+    path: paths.dist,
     publicPath: '/',
     libraryTarget: 'umd',
   },
@@ -36,27 +34,25 @@ module.exports = (projectDir, baseDir, config) => ({
     ],
   },
   plugins: [
-    new FriendlyErrorsPlugin({
-      compilationSuccessInfo: {
-        messages: config.messages,
-      },
-      clearConsole: config.clearConsole,
-    }),
+    new CleanWebpackPlugin(
+      ['./dist'],
+      { root: paths.project }
+    ),
     new CopyWebpackPlugin([
-      { from: path.join(projectDir, './public'), to: path.join(projectDir, './dist') },
+      { from: paths.public, to: paths.dist },
     ]),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [
-      path.join(baseDir, './node_modules'),
-      path.join(projectDir, './node_modules'),
+      paths.toolboxNodeModules,
+      paths.projectNodeModules,
     ],
   },
   resolveLoader: {
     modules: [
-      path.join(baseDir, './node_modules'),
-      path.join(projectDir, './node_modules'),
+      paths.toolboxNodeModules,
+      paths.projectNodeModules,
     ],
   },
   devtool: 'cheap-source-map',

@@ -1,24 +1,37 @@
-const path = require('path');
 const merge = require('webpack-merge');
 const base = require('./webpack.config.base.js');
 
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
-module.exports = (projectDir, baseDir, config) => (
-  merge(base(projectDir, baseDir, config), {
+module.exports = (paths) => {
+  const port = require('../utils/devServerPort')();
+  const url = `http://0.0.0.0:${port}/`;
+
+  return merge(base(paths), {
+    output: {
+      filename: '[name].[hash].js',
+    },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.join(baseDir, './templates/index.ejs'),
+        template: paths.indexTemplate,
         chunks: ['main'],
       }),
       new Dotenv(),
       new webpack.HotModuleReplacementPlugin(),
+      new FriendlyErrorsPlugin({
+        compilationSuccessInfo: {
+          messages: [`Project running at ${url}`],
+        },
+        clearConsole: true,
+      }),
     ],
     devServer: {
+      quiet: true,
       compress: true,
-      contentBase: path.join(projectDir, './dist'),
+      contentBase: paths.dist,
       historyApiFallback: true,
       host: '0.0.0.0',
       hot: true,
@@ -26,5 +39,5 @@ module.exports = (projectDir, baseDir, config) => (
       openPage: 'demo',
       overlay: true,
     },
-  })
-);
+  });
+};
