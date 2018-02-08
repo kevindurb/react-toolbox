@@ -6,13 +6,17 @@ const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
-module.exports = (paths) => (
-  merge(base(paths), {
+module.exports = (paths) => {
+  const projectPackage = require(paths.projectPackage);
+
+  return merge(base(paths), {
     output: {
       filename: '[name].[hash].js',
     },
     plugins: [
+      new SWPrecacheWebpackPlugin({ cacheId: projectPackage.name }),
       new StaticSiteGeneratorPlugin({
         crawl: true,
       }),
@@ -28,5 +32,5 @@ module.exports = (paths) => (
         clearConsole: false,
       }),
     ],
-  })
-);
+  });
+};

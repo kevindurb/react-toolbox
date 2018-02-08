@@ -10,4 +10,5 @@ module.exports = () => ({
   projectNodeModules: path.resolve(projectRoot, './node_modules'),
   toolboxNodeModules: path.resolve(toolboxRoot, './node_modules'),
   indexTemplate: path.resolve(toolboxRoot, './templates/index.ejs'),
+  projectPackage: path.resolve(projectRoot, './package.json'),
 });
