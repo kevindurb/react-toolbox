@@ -62,3 +62,8 @@ yarn react-toolbox build
 
 ## Coming Soon...
 - Testing with Jest
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/kevindurb/react-toolbox/badge.svg?style=beer-square)](https://beerpay.io/kevindurb/react-toolbox)  [![Beerpay](https://beerpay.io/kevindurb/react-toolbox/make-wish.svg?style=flat-square)](https://beerpay.io/kevindurb/react-toolbox?focus=wish)
