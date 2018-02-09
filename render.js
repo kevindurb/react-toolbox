@@ -14,7 +14,10 @@ export default function (component) {
     const content = renderToString(component);
     return indexTemplate({
       content,
-      scriptSrc: locals.assets.main,
+      scripts: [
+        locals.assets.manifest,
+        locals.assets.main,
+      ]
     });
   };
 }

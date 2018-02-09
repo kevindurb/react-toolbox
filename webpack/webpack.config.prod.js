@@ -12,12 +12,21 @@ module.exports = (paths) => {
   const projectPackage = require(paths.projectPackage);
 
   return merge(base(paths), {
+    entry: {
+      prerender: ['babel-polyfill', './index.js'],
+    },
     output: {
       filename: '[name].[hash].js',
     },
     plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest',
+        chunks: ['main'],
+        minChunks: Infinity,
+      }),
       new SWPrecacheWebpackPlugin({ cacheId: projectPackage.name }),
       new StaticSiteGeneratorPlugin({
+        entry: 'prerender',
         crawl: true,
       }),
       new webpack.HashedModuleIdsPlugin(),

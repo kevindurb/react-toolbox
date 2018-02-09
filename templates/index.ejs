@@ -13,8 +13,10 @@
         <%- content %>
       <% } %>
     </div>
-    <% if (typeof scriptSrc !== 'undefined') { %>
-      <script src="<%- scriptSrc %>"></script>
-    <% } %>
+    <% if (typeof scripts !== 'undefined') {
+      scripts.map(function(script) {
+        %><script src="<%- script %>"></script><%
+      });
+    } %>
   </body>
 </html>
