@@ -20,6 +20,7 @@ https://www.youtube.com/watch?v=G39lKaONAlA
 - Simple commands
 - Service Worker caching built in!
 - jss extract critical styles during pre-render
+- auto reload in dev mode
 
 ## Installation
 ```
