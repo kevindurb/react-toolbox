@@ -19,6 +19,7 @@ https://www.youtube.com/watch?v=G39lKaONAlA
 - Build-time pre-rendering built in
 - Simple commands
 - Service Worker caching built in!
+- jss extract critical styles during pre-render
 
 ## Installation
 ```
@@ -28,6 +29,11 @@ or with npm
 ```
 npm install --save @kevindurb/react-toolbox
 ```
+
+### Peer Dependancies
+- react ^16.2.0
+- react-dom ^16.2.0
+- react-jss ^8.3.0
 
 ## Usage
 `react-toolbox` looks for an entry point at `./index.js` in the root of your
