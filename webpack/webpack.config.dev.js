@@ -8,35 +8,34 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = (paths) => {
   const port = require('../utils/devServerPort')();
-  const url = `http://0.0.0.0:${port}/`;
+  const url = `http://localhost:${port}/`;
 
   return merge(base(paths), {
+    entry: [
+      'webpack-dev-server/client',
+      'babel-polyfill',
+      './index.js'
+    ],
     output: {
       filename: '[name].[hash].js',
     },
     plugins: [
       new HtmlWebpackPlugin({
         template: paths.indexTemplate,
-        chunks: ['main'],
+        inject: true,
       }),
       new Dotenv(),
-      new webpack.HotModuleReplacementPlugin(),
       new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
           messages: [`Project running at ${url}`],
         },
         clearConsole: true,
       }),
+      new webpack.HotModuleReplacementPlugin(),
     ],
+    devtool: 'inline-source-map',
     devServer: {
-      quiet: true,
-      compress: true,
       contentBase: paths.dist,
-      historyApiFallback: true,
-      host: '0.0.0.0',
-      hot: true,
-      open: false,
-      openPage: 'demo',
       overlay: true,
     },
   });

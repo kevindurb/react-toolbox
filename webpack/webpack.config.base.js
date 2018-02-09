@@ -1,11 +1,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = (paths) => ({
   context: paths.project,
-  entry: {
-    main: ['babel-polyfill', './index.js'],
-  },
   output: {
     path: paths.dist,
     publicPath: '/',
@@ -34,10 +30,6 @@ module.exports = (paths) => ({
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(
-      ['./dist'],
-      { root: paths.project }
-    ),
     new CopyWebpackPlugin([
       { from: paths.public, to: paths.dist },
     ]),
