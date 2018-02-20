@@ -69,5 +69,8 @@ along with a `index.html` that points to your app's `index.js`.
 yarn react-toolbox build
 ```
 
+### Notes
+- Must have your entry at `./index.js` and must have `public` folder (even if its empty, this requirement will hopefully be removed soon...)
+
 ## Coming Soon...
 - Testing with Jest
