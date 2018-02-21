@@ -1,3 +1,4 @@
+const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (paths) => ({
@@ -31,7 +32,7 @@ module.exports = (paths) => ({
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: paths.public, to: paths.dist },
+      fs.existsSync(paths.public) ? { from: paths.public, to: paths.dist } : null,
     ]),
   ],
   resolve: {
