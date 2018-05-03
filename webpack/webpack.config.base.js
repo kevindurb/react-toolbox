@@ -11,6 +11,14 @@ module.exports = (paths) => ({
   module: {
     rules: [
       {
+        test: /\.(svg|png|jpg|gif|eot|woff|woff2|ttf)$/,
+        use: 'file-loader',
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
         test: /\.ejs$/,
         loader: 'ejs-compiled-loader',
       },
