@@ -37,6 +37,7 @@ module.exports = (paths) => {
     devServer: {
       contentBase: paths.dist,
       overlay: true,
+      quiet: true,
     },
   });
 };
