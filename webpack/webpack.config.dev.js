@@ -38,6 +38,7 @@ module.exports = (paths) => {
       contentBase: paths.dist,
       overlay: true,
       quiet: true,
+      historyApiFallback: true,
     },
   });
 };
